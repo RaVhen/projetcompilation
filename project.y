@@ -9,9 +9,8 @@
  void yyerror (char* msg);
  extern FILE * yyin; 
  #define YYSTYPE char*
- Rules rules;
- char* temp;
- int done = 0; 
+ char* command;
+ char* option; 
 %}
 %token TOK_EOL "end of line"
 %token TOK_EOF "end of file"
@@ -20,18 +19,22 @@
 
 %%
 input:
-      TOK_EOF {printf("\n\nFIN\n\n");YYABORT;}          //Abort find EOF
-     |line TOK_EOF   {printf("\n\nFIN\n\n");YYABORT;}
+      TOK_EOF            {printf("\n\nFIN\n\n");YYABORT;}          //Abort find EOF
+     |line TOK_EOF       {printf("\n\nFIN\n\n");YYABORT;}
      |line TOK_EOL input
      ;
 
 line:
-    TOK_CMD  TOK_CMD       {printf("Y1[%s] Y2[%s] endl\n",$1,$2);
-                              rules = addRule(rules,$1,$2);
-                              echoRules(rules);}
-    |TOK_CMD                {printf("Y1[%s] endl\n",$1);
-                              rules = addRule(rules,$1,"#");
-                              echoRules(rules);}
+    TOK_CMD  TOK_NBR       {printf("Y1[%s] Y2[%s] endl\n",$1,$2);
+	                    command = malloc(sizeof(strlen($1))*1);
+	                    option = malloc(sizeof(strlen($2))*1);
+	                    strcpy(command,$1);
+	                    strcpy(option,$2);
+                           }
+    |TOK_CMD               {printf("Y1[%s] endl\n",$1);
+	                    command = malloc(sizeof(strlen($1))*1);
+	                    strcpy(command,$1);
+                           }
     ;
 
 
@@ -41,10 +44,11 @@ void yyerror (char* msg){
   exit(-1);
 }
 
-Rules returnList(){
-  return (rules);
+char* returnCommand(){
+	return (command);
 }
 
-int isDone(){
-  return done;
+char* returnOption(){
+	return (option);
 }
+

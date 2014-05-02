@@ -191,16 +191,15 @@ int main(int argc, char** argv){
 
 	Rule* manu = NULL;
 	printf("\n\n<(^_^<) <(^_^)^ ^(^_^)^ ^(^_^)> (>^_^)>\n\n");
-
-	Rules dalmar = returnList();
+	Rule* dalmar = NULL;
 	int done;
-	echoRules(dalmar);
-	yyin = fopen(argv[1], "r");
+	//echoRules(dalmar);
+	yyin = stdin;
 	yyparse();
-	manu = returnList();
+	manu = NULL;
 	printf("\n\n<(^_^<) <(^_^)^ ^(^_^)^ ^(^_^)> (>^_^)>\n\n");	
-	echoRules(manu);
-	fclose(yyin);
+	//echoRules(manu);
+	//fclose(yyin);
 
 	return 0;
 
