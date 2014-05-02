@@ -8,10 +8,16 @@
 %option noyywrap
 %%
 [ \t]*;
-[a-zA-Z]+                  {
+[a-zA-Z_]+                {
  	                    yylval = strdup(yytext);
 	                    printf("L[%s]  ",yylval);
-	                    return TOK_CMD;}
+	                    return TOK_CMD;
+                           }
+[a-zA-Z1-9_\(\)-]+\.[a-z1-9]+ {
+	                    yylval = strdup(yytext);
+	                    printf("L[%s]  ",yylval);
+	                    return TOK_IMG;
+                           }
 [-]?[1-9]+                 {
                             yylval = strdup(yytext);
 	                    printf("L[%s]  ",yylval);

@@ -16,6 +16,7 @@
 %token TOK_EOF "end of file"
 %token TOK_CMD "command"
 %token TOK_NBR "number"
+%token TOK_IMG "image"
 
 %%
 input:
@@ -25,7 +26,7 @@ input:
      ;
 
 line:
-    TOK_CMD  TOK_NBR       {printf("Y1[%s] Y2[%s] endl\n",$1,$2);
+     TOK_CMD  TOK_NBR  TOK_IMG       {printf("Y1[%s] Y2[%s] Y3[%s] endl\n",$1,$2,$3);
 	                    command = malloc(sizeof(strlen($1))*1);
 	                    option = malloc(sizeof(strlen($2))*1);
 	                    strcpy(command,$1);
