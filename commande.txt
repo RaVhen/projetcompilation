@@ -15,3 +15,9 @@ Retourner (vers le bas) : 					convert -flip img.jpg _new_img.jpg 				==> flip i
 Flou gaussien : 						convert -gaussian-blur 50 img.jpg new_img.jpg 			==> gaussian_blur image.png
 Noir et blanc : 						convert -monochrome img.jpg new_img.jpg 			==> n&b image.png
 Peinture à l'huile : 						convert -paint 3 img.jpg new_img.jpg 				==> huile image.png
+Rotation 90° droite :						convert -rotate "90" img.jpg new_img.png			==> rotation +90 image.png
+Rotation -90° gauche:						convert -rotate"-90" img.jpg new_img.pgn			==> rotation -90 image.png
+
+
+
+
