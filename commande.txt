@@ -1,0 +1,10 @@
+//Commande à utiliser.
+
+Ouvrir une image : display image.png ==> ouvrir image.png
+Information sur l'image : identify -ping image.png ==> infos image.png
+
+Redimensions de l'image : convert -adaptative-resize image.png nouvelle_image.png ==> redimension image.png nouvelle.png
+Retourner une image de bas en haut : convert -flip image.png image-inversee.png ==> retroune_HB image.png nouvelle.png
+Retourner une image de gauche à droite : convert -flop image.png image-inversee.png
+Blur de l'image: convert -blur 10x2 img.jpg new_img.jpg ==> blur image.png
+Faire un contour : convert -border image.png ==> contour image.png
