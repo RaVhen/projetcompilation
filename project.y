@@ -15,7 +15,8 @@
 %}
 %token TOK_EOL "end of line"
 %token TOK_EOF "end of file"
-%token TOK_EXPR "expr"
+%token TOK_CMD "command"
+%token TOK_NBR "number"
 
 %%
 input:
@@ -25,10 +26,10 @@ input:
      ;
 
 line:
-    TOK_EXPR  TOK_EXPR       {printf("Y1[%s] Y2[%s] endl\n",$1,$2);
+    TOK_CMD  TOK_CMD       {printf("Y1[%s] Y2[%s] endl\n",$1,$2);
                               rules = addRule(rules,$1,$2);
                               echoRules(rules);}
-    |TOK_EXPR                {printf("Y1[%s] endl\n",$1);
+    |TOK_CMD                {printf("Y1[%s] endl\n",$1);
                               rules = addRule(rules,$1,"#");
                               echoRules(rules);}
     ;
