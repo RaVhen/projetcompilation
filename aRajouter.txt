@@ -1,0 +1,4 @@
+PNG en JPEG : convert image.png image.jpg ==> format
+Convertir dans un même dossier toutes les images PNG en JPEG :     mogrify -quality 96 -format jpg *.png ==> touten
+Noir et Blanc : convert -type image.jpg image-noir-blanc.jpg  ==> N&B 
+
