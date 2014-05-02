@@ -1,6 +1,6 @@
 NAME = projet
 CFILE = main.c
-LFILE = projet.l
+LFILE = project.l
 YFILE = project.y
 
 .PHONY: all clean
