@@ -22,6 +22,7 @@ Rotation 90° droite :						convert -rotate "90" img.jpg new_img.png			==> rotat
 Rotation -90° gauche:						convert -rotate"-90" img.jpg new_img.pgn			==> rotation -90 image.png
 */
 
+/*Ouverture d'un fichier*/
 void ouvrir(char filename[]){
   char commande[50];
   strcat(commande, "display");
@@ -30,6 +31,7 @@ void ouvrir(char filename[]){
   system(commande);
 }
 
+/*Donne les informations du fichier*/
 void infos(char filename[]){
   char commande[50];
   strcat(commande, "identify");
@@ -40,6 +42,7 @@ void infos(char filename[]){
   system(commande);
 }
 
+/*Enregistre dans un nouveau format*/
 void format(char filename[], char type[]){
   char commande[50];
   strcat(commande, "convert");
@@ -51,6 +54,8 @@ void format(char filename[], char type[]){
   strcat(commande, type);
   system(commande);
 }
+
+
 int main(int argc, char* argv[]){
   printf("Hello world !\n");
   system("pwd");
