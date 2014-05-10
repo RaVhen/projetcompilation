@@ -21,7 +21,7 @@ int readGrammarFromFile(char* filename){
 */
 
 
-Rules addRule(Rules r, char* nonTerminal, char* replacement)
+Rules addRule(Rules r, char* type, char* name)
 {
 	Rules new;
 		
@@ -31,12 +31,12 @@ Rules addRule(Rules r, char* nonTerminal, char* replacement)
 		if (new ==NULL)
 			return(NULL);
 		
-		new->nonTerminal = malloc(strlen(nonTerminal) * sizeof(char) +1);
-		new->replacement = malloc(strlen(replacement) * sizeof(char) +1);
+		new->type = malloc(strlen(type) * sizeof(char) +1);
+		new->name = malloc(strlen(name) * sizeof(char) +1);
 		
 		
-		strcpy(new->nonTerminal, nonTerminal);
-		strcpy(new->replacement, replacement);
+		strcpy(new->type, type);
+		strcpy(new->name, name);
 		
 		new->nextRule = NULL;
 		r = new;
@@ -44,15 +44,15 @@ Rules addRule(Rules r, char* nonTerminal, char* replacement)
 	}
 	
 	
-	r->nextRule = addRule(r->nextRule, nonTerminal, replacement);
+	r->nextRule = addRule(r->nextRule, type, name);
 	return(r);
 }
 
 void freeRules(Rules r){
 	if(r){
 		freeRules(r->nextRule);
-		free(r->nonTerminal);
-		free(r->replacement);
+		free(r->type);
+		free(r->name);
 		free(r);
 	}
 
@@ -61,13 +61,13 @@ void freeRules(Rules r){
 
 void echoRule(Rule rule){
 	
-	printf("%s -> %s\n", rule.nonTerminal, rule.replacement);
+	printf("%s -> %s\n", rule.type, rule.name);
 
 }
 
 int echoRules(Rules rules){
 	while(rules){
-		printf("%s -> %s\n", rules->nonTerminal, rules->replacement);
+		printf("%s -> %s\n", rules->type, rules->name);
 		rules = rules->nextRule;
 	} 
 	return 0;
@@ -116,8 +116,8 @@ Rules removeRuleN_(Rules r, int curN, int finalN){
 		*/
 		Rules next = r->nextRule;
 		
-		free(r->nonTerminal);
-		free(r->replacement);
+		free(r->type);
+		free(r->name);
 		free(r);
 		
 		return(next);
@@ -146,7 +146,7 @@ char* newNotPresentRule(char* name, Rules r){
 	while(cur){ //scan the whole list
 	
 	
-		if(strcmp(cur->nonTerminal, name)!=0){ //this name allready exists
+		if(strcmp(cur->type, name)!=0){ //this name allready exists
 			//we add another char to the name
 			newnewName = malloc((strlen(newName)+2)*sizeof(char));
 			newnewName[strlen(newName)-2] = '\'';

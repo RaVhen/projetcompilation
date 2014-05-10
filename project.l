@@ -13,7 +13,7 @@
 	                    printf("L[%s]  ",yylval);
 	                    return TOK_CMD;
                            }
-[a-zA-Z1-9_\(\)-]+\.[a-z1-9]+ {
+[a-zA-Z1-9_\(\)-]+\.[png]+ {
 	                    yylval = strdup(yytext);
 	                    printf("L[%s]  ",yylval);
 	                    return TOK_IMG;
