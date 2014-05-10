@@ -16,7 +16,7 @@ Effet dessin : 							convert -charcoal 4 img.jpg new_img.jpg 			==> dessin imag
 Réglage gamma auto : 						convert -auto-gamma img.jpg new_img.png 			==> gamma_auto image.png
 Retourner (vers le bas) : 					convert -flip img.jpg _new_img.jpg 				==> flip image.png
 Flou gaussien : 						convert -gaussian-blur 50 img.jpg new_img.jpg 			==> gaussian_blur image.png
-Noir et blanc : 						convert -monochrome img.jpg new_img.jpg 			==> n&b image.png
+Noir et blanc : 						convert -monochrome img.jpg new_img.jpg 			==> n_b image.png
 Peinture à l'huile : 						convert -paint 3 img.jpg new_img.jpg 				==> huile image.png
 Rotation 90° droite :						convert -rotate "90" img.jpg new_img.png			==> rotation +90 image.png
 Rotation -90° gauche:						convert -rotate"-90" img.jpg new_img.pgn			==> rotation -90 image.png
@@ -55,11 +55,92 @@ void format(char filename[], char type[]){
   system(commande);
 }
 
+/*upside-down*/
+void retourne_HB(char filename[]){
+  char commande[50];
+  strcat(commande, "convert -flip ");
+  strcat(commande, filename);
+  strcat(commande, " ");
+  strcat(commande, filename);
+  strcat(commande, ".upsidedown.png");
+  system(commande);
+}
+
+/*effet miroir*/
+void retourne_GD(char filename[]){
+  char commande[50];
+  strcat(commande, "convert -flop ");
+  strcat(commande, filename);
+  strcat(commande, " ");
+  strcat(commande, filename);
+  strcat(commande, ".mirror.png");
+  system(commande);
+}
+
+/*blur it all*/
+void blur(char filename[]){
+  char commande[50];
+  strcat(commande, "convert -blur 10x2 ");
+  strcat(commande, filename);
+  strcat(commande, " ");
+  strcat(commande, filename);
+  strcat(commande, ".blurry.png");
+  system(commande);
+}
+
+/*dessine un contour*/
+void contour(char filename[]){
+  char commande[50];
+  strcat(commande, "convert -bordercolor #000000 -border ");
+  strcat(commande, filename);
+  strcat(commande, " ");
+  strcat(commande, filename);
+  strcat(commande, ".border.png");
+  system(commande);
+}
+
+/*effet dessin*/
+void dessin(char filename[]){
+  char commande[50];
+  strcat(commande, "commande -charcoal 4 ");
+  strcat(commande, filename);
+  strcat(commande, " ");
+  strcat(commande, filename);
+  strcat(commande, ".dessin.png");
+  system(commande);
+}
+
+/*noir et blanc*/
+void n_b(char filename[]){
+  char commande[50];
+  strcat(commande, "convert -monochrome ");
+  strcat(commande, filename);
+  strcat(commande, " ");
+  strcat(commande, filename);
+  strcat(commande, ".black_&_white.png");
+  system(commande);
+}
+
+/*rotate de i°*/
+void rotate(char filename[], int i){
+  char commande[50];
+  strcat(commande, "convert -rotate \"");
+  strcat(commande, i);
+  strcat(commande, "\" ");
+  strcat(commande, filename);
+  strcat(commande, " ");
+  strcat(commande, filename);
+  strcat(commande, ".rotate_");
+  strcat(commande, i);
+  strcat(commande, "_degrees.png");
+  system(commande);
+}
+}
 
 int main(int argc, char* argv[]){
   printf("Hello world !\n");
   system("pwd");
-  format("lena.bmp", "png");
+  retourne_HB("lena.bmp");
 
   return 0;
 }
