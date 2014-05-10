@@ -196,9 +196,9 @@ int main(int argc, char** argv){
 	//echoRules(dalmar);
 	yyin = stdin;
 	yyparse();
-	manu = NULL;
+	manu = returnList();
 	printf("\n\n<(^_^<) <(^_^)^ ^(^_^)^ ^(^_^)> (>^_^)>\n\n");	
-	//echoRules(manu);
+	echoRules(manu);
 	//fclose(yyin);
 
 	return 0;
