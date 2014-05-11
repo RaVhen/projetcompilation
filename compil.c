@@ -122,25 +122,25 @@ void n_b(char filename[]){
 }
 
 /*rotate de i°*/
-void rotate(char filename[], int i){
+void rotate(char filename[], char deg[]){
   char commande[50];
   strcat(commande, "convert -rotate \"");
-  strcat(commande, i);
+  strcat(commande, deg);
   strcat(commande, "\" ");
   strcat(commande, filename);
   strcat(commande, " ");
   strcat(commande, filename);
   strcat(commande, ".rotate_");
-  strcat(commande, i);
+  strcat(commande, deg);
   strcat(commande, "_degrees.png");
   system(commande);
 }
-}
+
 
 int main(int argc, char* argv[]){
   printf("Hello world !\n");
   system("pwd");
-  retourne_HB("lena.bmp");
+  rotate("lena.bmp", "45");
 
   return 0;
 }
