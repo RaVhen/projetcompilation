@@ -241,7 +241,7 @@ void contour(char filename[]){
 /*effet dessin*/
 void dessin(char filename[]){
   char commande[50];
-  strcat(commande, "commande -charcoal 4 ");
+  strcat(commande, "convert -charcoal 4 ");
   strcat(commande, filename);
   strcat(commande, " ");
   strcat(commande, filename);
@@ -261,16 +261,16 @@ void n_b(char filename[]){
 }
 
 /*rotate de i°*/
-void rotate(char filename[], char deg[]){
+void rotate(char filename[]){
   char commande[50];
   strcat(commande, "convert -rotate \"");
-  strcat(commande, deg);
+  strcat(commande, "90");
   strcat(commande, "\" ");
   strcat(commande, filename);
   strcat(commande, " ");
   strcat(commande, filename);
   strcat(commande, ".rotate_");
-  strcat(commande, deg);
+  strcat(commande, "90");
   strcat(commande, "_degrees.png");
   system(commande);
 }
@@ -323,63 +323,62 @@ int main(int argc, char** argv){
 	Rule* tmp_op = NULL;
 	char commande[15];
 	char test[15] = "ouvrir";
-	printf("debug1\n");
+	//printf("debug1\n");
 	
 	while(tmp != NULL){
 	  strcpy(commande, tmp -> name);
 
 	  if(strcmp(commande, "ouvrir") == 0){
-	    printf("OPEN\n"); 
+	    // printf("OPEN\n"); 
 	    tmp_fich = tmp -> nextRule;
-	    system("pwd");
+	    system("echo");
 	    ouvrir(tmp_fich -> name);
 	  }
 	  if(strcmp(commande, "infos") == 0){
 	    tmp_fich = tmp -> nextRule;
-	    system("pwd");
+	    system("echo");
 	    infos(tmp_fich -> name);
 	  }
 	  if(strcmp(commande, "format") == 0){
 	    tmp_fich = tmp -> nextRule;
 	    tmp_op = tmp_fich -> nextRule;
-	    system("pwd");
+	    system("echo");
 	    format(tmp_fich -> name, tmp_op -> name);
 	  }
 	  if(strcmp(commande, "retourne_HB") == 0){
 	    tmp_fich = tmp -> nextRule;
-	    system("pwd");
+	    system("echo");
 	    retourne_HB(tmp_fich -> name);
 	  }
 	  if(strcmp(commande, "retourne_GD") == 0){
 	    tmp_fich = tmp -> nextRule;
-	    system("pwd");
+	    system("echo");
 	    retourne_GD(tmp_fich -> name);
 	  }
 	  if(strcmp(commande, "blur") == 0){
 	    tmp_fich = tmp -> nextRule;
-	    system("pwd");
+	    system("echo");
 	    blur(tmp_fich -> name);
 	  }
 	  if(strcmp(commande, "contour") == 0){
 	    tmp_fich = tmp -> nextRule;
-	    system("pwd");
+	    system("echo");
 	    contour(tmp_fich -> name);
 	  }
 	  if(strcmp(commande, "dessin") == 0){
 	    tmp_fich = tmp -> nextRule;
-	    system("pwd");
+	    system("echo");
 	    dessin(tmp_fich -> name);
 	  }
 	  if(strcmp(commande, "nb") == 0){
 	    tmp_fich = tmp -> nextRule;
-	    system("pwd");
+	    system("echo");
 	    n_b(tmp_fich -> name);
 	  }
 	  if(strcmp(commande, "rotate") == 0){
 	    tmp_fich = tmp -> nextRule;
-	    tmp_op = tmp_fich -> nextRule;
-	    system("pwd");
-	    rotate(tmp_fich -> name, tmp_op -> name);
+	    system("echo");
+	    rotate(tmp_fich -> name);
 	  }
 	  tmp = tmp -> nextRule;
 	}
