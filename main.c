@@ -304,31 +304,6 @@ int main(int argc, char** argv){
 	echoRules(rules);
 	//printf("%d regles\n", compteur(rules));
 	
-	while(1){
-	  switch((getRuleN(rules, 1)).name){
-	  case "ouvrir": ouvrir(filename);
-	    break;
-	  case "infos": infos(filename);
-	    break;
-	  case "format": format(filename, getRuleN(rules, 3));
-	    break;
-	  case "retourne_HB": retourne_HB(filename);
-	    break;
-	  case "retourne_GD": retourne_GD(filename);
-	    break;
-	  case "blur": blur(filename);
-	    break;
-	  case "contour": contour(filename);
-	    break;
-	  case "dessin": dessin(filename);
-	    break;
-	  case "n&b": n_b(filename);
-	    break;
-	  case "rotate": rotate(filename, getRuleN(rules, 3));
-	    break;
-	  }
-	}
-
 	freeRules(rules);
 
 
@@ -343,6 +318,72 @@ int main(int argc, char** argv){
 	manu = returnList();
 	printf("\n\n<(^_^<) <(^_^)^ ^(^_^)^ ^(^_^)> (>^_^)>\n\n");	
 	echoRules(manu);
+	Rule* tmp = manu;
+	Rule* tmp_fich = NULL;
+	Rule* tmp_op = NULL;
+	char commande[15];
+	char test[15] = "ouvrir";
+	printf("debug1\n");
+	
+	while(tmp != NULL){
+	  strcpy(commande, tmp -> name);
+
+	  if(strcmp(commande, "ouvrir") == 0){
+	    printf("OPEN\n"); 
+	    tmp_fich = tmp -> nextRule;
+	    system("pwd");
+	    ouvrir(tmp_fich -> name);
+	  }
+	  if(strcmp(commande, "infos") == 0){
+	    tmp_fich = tmp -> nextRule;
+	    system("pwd");
+	    infos(tmp_fich -> name);
+	  }
+	  if(strcmp(commande, "format") == 0){
+	    tmp_fich = tmp -> nextRule;
+	    tmp_op = tmp_fich -> nextRule;
+	    system("pwd");
+	    format(tmp_fich -> name, tmp_op -> name);
+	  }
+	  if(strcmp(commande, "retourne_HB") == 0){
+	    tmp_fich = tmp -> nextRule;
+	    system("pwd");
+	    retourne_HB(tmp_fich -> name);
+	  }
+	  if(strcmp(commande, "retourne_GD") == 0){
+	    tmp_fich = tmp -> nextRule;
+	    system("pwd");
+	    retourne_GD(tmp_fich -> name);
+	  }
+	  if(strcmp(commande, "blur") == 0){
+	    tmp_fich = tmp -> nextRule;
+	    system("pwd");
+	    blur(tmp_fich -> name);
+	  }
+	  if(strcmp(commande, "contour") == 0){
+	    tmp_fich = tmp -> nextRule;
+	    system("pwd");
+	    contour(tmp_fich -> name);
+	  }
+	  if(strcmp(commande, "dessin") == 0){
+	    tmp_fich = tmp -> nextRule;
+	    system("pwd");
+	    dessin(tmp_fich -> name);
+	  }
+	  if(strcmp(commande, "nb") == 0){
+	    tmp_fich = tmp -> nextRule;
+	    system("pwd");
+	    n_b(tmp_fich -> name);
+	  }
+	  if(strcmp(commande, "rotate") == 0){
+	    tmp_fich = tmp -> nextRule;
+	    tmp_op = tmp_fich -> nextRule;
+	    system("pwd");
+	    rotate(tmp_fich -> name, tmp_op -> name);
+	  }
+	  tmp = tmp -> nextRule;
+	}
+
 	//fclose(yyin);
 
 	return 0;
